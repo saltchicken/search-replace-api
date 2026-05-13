@@ -6,6 +6,7 @@ from google.genai.types import HttpOptions
 def main():
     parser = argparse.ArgumentParser(description="Send a prompt and codebase context to Gemini.")
     parser.add_argument("--prompt", required=True, help="The prompt to insert into <user_request>")
+    parser.add_argument("--dry-run", action="store_true", help="Output the built prompt without calling the API")
     args = parser.parse_args()
 
     # Check if data is being piped into stdin
@@ -33,6 +34,10 @@ def main():
         "<codebase>\n\n</codebase>", 
         f"<codebase>\n{codebase_context}\n</codebase>"
     )
+
+    if args.dry_run:
+        print(modified_prompt)
+        sys.exit(0)
 
     client = genai.Client(
         vertexai=True,
