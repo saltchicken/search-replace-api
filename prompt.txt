@@ -38,9 +38,15 @@
   <format_template>
     ```text
     path/to/file.ext
+    <<<<<<< SEARCH
+    [exact existing code]
+    =======
+    [new replacement code]
+    >>>>>>> REPLACE
     ```
 
     ```text
+    path/to/file.ext
     <<<<<<< SEARCH
     [exact existing code]
     =======
